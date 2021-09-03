@@ -1,1 +1,3 @@
-# 590-sss68
+# Repository for files from ANLY 590-02
+# Samuel Solomon
+# Georgetown University NETID: sss68

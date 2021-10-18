@@ -1,13 +1,13 @@
+from keras import layers
+from keras import models
+from keras import optimizers
 
 from keras.datasets import mnist
 from keras.datasets import fashion_mnist
 from keras.datasets import cifar10
 
-from keras.utils import to_categorical
+from tensorflow.keras.utils import to_categorical
 
-from keras import layers
-from keras import models
-from keras import optimizers
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -17,7 +17,7 @@ import numpy as np
 # Set hyperparameters
 #----------------------------------------
 
-data = 'CIFAR-10' 	# Data can be MNIST, MNIST Fashion, or CIFAR-10
+data = 'CIFAR-10' 		# Data can be 'MNIST', 'MNIST Fashion', or 'CIFAR-10'
 
 kernel_size = 3; 		# Kernel height and width defaults to 3, is otherwise 2 for CIFAR-10
 pool_size = 2;			# Pool size defaults to 2

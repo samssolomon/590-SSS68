@@ -59,20 +59,17 @@ train_targets.shape
 test_targets.shape
 
 #------------------
-# Partition data into training
-#------------------
-
-
-#------------------
 # Normalize data
 #------------------
 mean = train_data.mean(axis=0)
 train_data -= mean
-std = train_data.astype(float).std(axis=0)
+std = train_data.astype('float32').std(axis=0)
 train_data /= std
 
 test_data -= mean
 test_data /= std
+
+
 
 #------------------
 # Define model
@@ -87,6 +84,7 @@ def build_model():
 	model.add(layers.Dense(1))
 	model.compile(optimizer='rmsprop',loss='mse',metrics=['mae'])
 	return model
+
 
 #------------------
 # K-fold validation
@@ -103,11 +101,14 @@ for i in range(k):
 	partial_train_data = np.concatenate(
 		[train_data[:i * num_val_samples],
 		 train_data[(i + 1) * num_val_samples:]],
-		axis = 0)
+		axis = 0).astype(np.int)
 	partial_train_targets = np.concatenate(
 		[train_targets[:i * num_val_samples],
 		 train_targets[(i + 1) * num_val_samples:]],
-		axis=0)
+		axis=0).astype(np.int)
+
+	print(partial_train_data.shape)
+	print(partial_train_targets.shape)
 
 	model1 = build_model()
 	model1.fit(partial_train_data,
@@ -128,6 +129,9 @@ test_mse_score, test_mae_score = model1.evaluate(test_data, test_targets)
 print("Mean absolute error of model on test data:",test_mae_score)
 
 
+print(partial_train_data)
+
+exit()
 
 
 
